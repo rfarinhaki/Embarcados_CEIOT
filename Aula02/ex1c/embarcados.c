@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 #define BUTTON_EVENT  (45)
-#define LED1 (IOID_14)
-#define LED2 (IOID_15)
+#define LED1 (IOID_6)
+#define LED2 (IOID_7)
 #define BUTTON (IOID_13)
 #define PRESSED 0
 #define UP 1
@@ -34,15 +34,20 @@ PROCESS_THREAD(count_process, ev, data)
         PROCESS_WAIT_EVENT();
 
         if(ev == PROCESS_EVENT_TIMER){
-            if(counter == 1 || counter == 3)
-                GPIO_setDio(LED1);
-            else
-                GPIO_clearDio(LED1);
 
-            if(counter == 2 || counter == 3)
-                GPIO_setDio(LED2);
-            else
-                GPIO_clearDio(LED2);
+            GPIO_writeDio(LED1, (counter & (1<<0)) == 0x1);
+            GPIO_writeDio(LED2, (counter & (1<<1)) == 0x2);
+
+            //if(counter == 1 || counter == 3)
+            //    GPIO_setDio(LED1);
+            //else
+            //    GPIO_clearDio(LED1);
+
+            //if( (counter &(1<<1)) == 0x2)
+            //if(counter == 2 || counter == 3)
+            //    GPIO_setDio(LED2);
+            //else
+            //    GPIO_clearDio(LED2);
 
             if(mode == UP)
                 counter++;
