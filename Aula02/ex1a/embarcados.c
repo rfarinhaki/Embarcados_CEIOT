@@ -1,3 +1,5 @@
+/* Exemplo 1: Inicia o timer dos leds apõs o botao ter sido pressionado
+ * */
 #include "contiki.h"
 #include "dev/leds.h"
 #include "dev/button-sensor.h"
@@ -5,8 +7,8 @@
 #include <stdio.h>
 
 #define BUTTON_EVENT  (45)
-#define LED1 (IOID_4)
-#define LED2 (IOID_5)
+#define LED1 (IOID_6)
+#define LED2 (IOID_7)
 
 static struct etimer et_count;
 
